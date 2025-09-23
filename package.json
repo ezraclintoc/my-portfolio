@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "rm -rf dist && npm run build && echo 'ezra.is-a.dev' > dist/CNAME && npx gh-pages -d dist"
+    "deploy": "rm -rf dist && npm run build && echo 'ezra.is-a.dev' > dist/CNAME && cp ./google1f5c81f8df6cec8c.html -r ./dist/    && npx gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
