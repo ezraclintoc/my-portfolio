@@ -155,7 +155,7 @@ export default function App() {
               <div className="flex gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/20 text-black font-medium hover:scale-105 transition"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/20 text-white font-medium hover:scale-105 transition"
                 >
                   View projects
                 </a>
