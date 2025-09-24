@@ -59,11 +59,11 @@ export default function App() {
 
   const projects = [
     {
-      title: "Set | Online Card Game",
-      desc: "A multiplayer card game with real-time play — Built without backend",
+      title: "Set",
+      desc: "A multiplayer online card game with real-time play — Built without backend",
       tags: ["Javascript", "Pusher.js", "two.js"],
       code: "https://github.com/ezraclintoc/set",
-      demo: "https:/ezra.is-a.dev/set",
+      demo: "https://ezraclintoc.github.io/set",
     },
     {
       title: "Perlerizer",
@@ -77,19 +77,28 @@ export default function App() {
       tags: ["Wallpapers"],
       code: "https://github.com/ezraclintoc/wallpapers",
     },
+    {
+      title: "Debate Club Website",
+      desc: "A website for the CFC debate club. It has a secure login system and is hosted on vercel.",
+      tags: ["React", "Node", "Tailwind"],
+      demo: "https://cfc.is-local.org"
+    },
   ];
 
-  // Add state for current project index and animation
+  // State for current project and rotation
   const [currentProject, setCurrentProject] = useState(0);
-  const [isRotating, setIsRotating] = useState(false);
+  const [isFadingOut, setIsFadingOut] = useState(false);
 
   // Auto-rotate projects every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsRotating(true);
-      setCurrentProject((prev) => (prev + 1) % projects.length);
-      setTimeout(() => setIsRotating(false), 500); // Match transition duration
-    }, 5000);
+      setIsFadingOut(true); // Start fade-out
+      setTimeout(() => {
+        setCurrentProject((prev) => (prev + 1) % projects.length); // Change project AFTER fade-out
+        setIsFadingOut(false); // Start fade-in
+      }, 500); // Match CSS transition duration
+    }, 20000);
+
     return () => clearInterval(interval);
   }, [projects.length]);
 
@@ -168,8 +177,8 @@ export default function App() {
               </div>
 
               {/* Custom icon loop (manual) */}
-              <div className="mt-12 overflow-hidden">
-                <div className="flex animate-scroll gap-10">
+              <div className="mt-12 overflow-hidden relative">
+                <div className="marquee gap-10">
                   {logos.concat(logos).map((logo, idx) => (
                     <div key={idx} className="flex-shrink-0">
                       {logo}
@@ -179,24 +188,27 @@ export default function App() {
               </div>
             </div>
 
-            {/* 3D interactive card unchanged */}
+            {/* 3D interactive card */}
             <div
               ref={cardRef}
               onMouseMove={handleMove}
               onMouseLeave={handleLeave}
-              className={`relative w-80 h-48 rounded-2xl shadow-2xl transform-gpu transition-transform duration-300 bg-black/40 text-white ${
-                isRotating ? "opacity-50" : ""
-              }`}
+              className={`relative w-80 h-48 rounded-2xl shadow-2xl transform-gpu 
+                transition-all duration-500 bg-black/40 text-white 
+                ${isFadingOut ? "opacity-0" : "opacity-100"}`}
               style={{
                 transform: `perspective(1200px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) scale(1.02)`,
-                transition: isRotating ? "opacity 0.5s ease-in-out" : "none",
               }}
             >
               <div className="absolute inset-0 rounded-2xl overflow-hidden border border-white/10">
                 <div className="absolute inset-0 p-6 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold">{projects[currentProject].title}</h3>
-                    <p className="mt-2 text-gray-200 text-sm">{projects[currentProject].desc}</p>
+                    <h3 className="text-xl font-semibold">
+                      {projects[currentProject].title}
+                    </h3>
+                    <p className="mt-2 text-gray-200 text-sm">
+                      {projects[currentProject].desc}
+                    </p>
                   </div>
 
                   {/* Buttons at the bottom left */}
@@ -220,7 +232,6 @@ export default function App() {
                   </div>
                 </div>
 
-                
                 <div
                   className="pointer-events-none absolute inset-0"
                   style={{
@@ -231,53 +242,56 @@ export default function App() {
               </div>
               <div className="absolute inset-0 rounded-2xl shadow-inner pointer-events-none" />
             </div>
+
           </div>
         </header>
         {/* Projects */}
         <main id="projects" className="max-w-6xl mx-auto px-6 pb-24">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Projects
-          </h2>
+          <h2 className="text-3xl font-bold text-white mb-6">Projects</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {projects.map((p) => (
               <article
                 key={p.title}
-                className="rounded-2xl p-6 bg-black/30 border border-white/10 backdrop-blur-sm hover:scale-105 transition text-white"
+                className="rounded-2xl p-6 bg-black/30 border border-white/10 backdrop-blur-sm hover:scale-105 transition text-white w-auto h-64"
               >
-                <h3 className="text-xl font-semibold">{p.title}</h3>
-                <p className="mt-2 text-gray-200 text-sm">{p.desc}</p>
-                <div className="mt-4 flex gap-2 flex-wrap">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/20"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-4 flex gap-3">
-                  {p.demo?.length != undefined ? (
-                    <a
-                      className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/20 text-white hover:bg-white/30 transition"
-                      href={p.demo}
-                    >
-                      Demo
-                    </a>
-                  ) : (
-                    <></>
-                  )}
-                  {p.code.length != undefined ? (
-                    <a
-                      className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20 transition"
-                      href={p.code}
-                    >
-                      Code
-                    </a>
-                  ) : (
-                    <></>
-                  )}
+                {/* <div className="absolute inset-0 rounded-2xl overflow-hidden border border-white/10"> */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold">{p.title}</h3>
+                    <p className="mt-2 text-gray-200 text-sm">{p.desc}</p>
+                  </div>
+
+                  <div className="mt-4 flex gap-2 flex-wrap">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/20"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Buttons at the bottom left */}
+                  <div className="flex gap-3 mt-4">
+                    {p.demo?.length ? (
+                      <a
+                        className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/20 text-white hover:bg-white/30 transition"
+                        href={p.demo}
+                      >
+                        Demo
+                      </a>
+                    ) : null}
+                    {p.code?.length ? (
+                      <a
+                        className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20 transition"
+                        href={p.code}
+                      >
+                        Code
+                      </a>
+                    ) : null}
+                  </div>
                 </div>
               </article>
             ))}

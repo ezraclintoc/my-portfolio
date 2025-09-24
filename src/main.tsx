@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import Head from "./Head";
+import Head from "./components/Head";
 import "./index.css"; 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
