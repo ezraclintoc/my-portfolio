@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";
 import { InteractiveCard } from "./components/InteractiveCard";
-import { ProjectsSection } from "./components/ProjectsSection";
+import { Projects } from "./components/Body";
 import { Footer } from "./components/Footer";
 import { ContactSection } from "./components/ContactSection";
 import { projects } from './data'; 
@@ -29,7 +29,7 @@ export default function App() {
         <Hero>
           <InteractiveCard projects={projects} />
         </Hero>
-        <ProjectsSection />
+        <Projects />
         <ContactSection />
         <Footer />
       </div>

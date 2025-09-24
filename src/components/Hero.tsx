@@ -20,7 +20,7 @@ export function Hero({ children }: { children: React.ReactNode }) {
             <a href="#projects" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/20 text-white font-medium hover:scale-105 transition">
               View projects
             </a>
-            <a href="mailto:ezra@example.com" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/10 text-white font-medium hover:scale-105 transition">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/10 text-white font-medium hover:scale-105 transition">
               Contact me
             </a>
           </div>
