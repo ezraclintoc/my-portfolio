@@ -52,4 +52,11 @@ export const projects = [
     tags: ["React", "Node", "Tailwind"],
     demo: "https://cfc.is-local.org"
   },
+  {
+    title: "Impromptu Generator",
+    desc: "A website that generates prompts for impromptu speaking.",
+    tags: ["Vite", "Tailwind", "React"],
+    demo: "https://impromptu-six.vercel.app/",
+    code: "https://github.com/ezraclintoc/Impromptu"
+  }
 ];
