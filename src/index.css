@@ -1,63 +1,166 @@
 @import "tailwindcss/index.css";
 
-/* Hero gradient highlight */
+@variant dark (&:where(.dark, .dark *));
+
+/* Hero name accent */
 .hero-highlight {
-  background-image: linear-gradient(
-    270deg,
-    #ff0080,
-    #7928ca,
-    #00ffff,
-    #ff8c00,
-    #ff0080
-  );
-  background-size: 1000% 1000%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(3.25rem, 10vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #0f766e;
   font-weight: 900;
-  animation: gradientShift 15s ease infinite;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
+.dark .hero-highlight {
+  color: #2dd4bf;
+}
+
+/* ── Entrance animation ─────────────────────────────────────── */
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Marquee scroll */
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.animate-in {
+  animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
+/* ── Scroll reveal ───────────────────────────────────────────── */
+
+[data-scroll-reveal] {
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+[data-scroll-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── Reduced motion ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  [data-scroll-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Delight ─────────────────────────────────────────────────── */
+
+@keyframes iconFlip {
+  from { transform: rotate(-30deg) scale(0.6); opacity: 0; }
+  to   { transform: rotate(0deg)   scale(1);   opacity: 1; }
+}
+
+.theme-icon {
+  animation: iconFlip 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popIn {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pop-in {
+  animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes msgAppear {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg-appear {
+  animation: msgAppear 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Project card hover ──────────────────────────────────────── */
+
+.project-card {
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(15, 118, 110, 0.07) 50%,
+    transparent 100%
+  );
+  transform: translateX(-110%);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.project-card:hover::before {
+  transform: translateX(110%);
+}
+
+.project-card-content {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-card-content {
+  transform: translateY(-3px);
+}
+
+/* ── Utilities ──────────────────────────────────────────────── */
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'DM Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: #111111;
+  background-color: #fafaf9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

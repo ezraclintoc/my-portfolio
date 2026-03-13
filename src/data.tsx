@@ -1,62 +1,47 @@
-import {
-  SiCplusplus,
-  SiPython,
-  SiGo,
-  SiReact,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiOllama,
-  SiOpengl,
-  SiCreality,
-  SiKicad,
-} from "react-icons/si";
-
-// An array of icon components for the tech marquee
-export const logos = [
-  <SiCplusplus size={40} color="white" />,
-  <SiPython size={40} color="white" />,
-  <SiGo size={40} color="white" />,
-  <SiReact size={40} color="white" />,
-  <SiTailwindcss size={40} color="white" />,
-  <SiNodedotjs size={40} color="white" />,
-  <SiOllama size={40} color="white" />,
-  <SiOpengl size={40} color="white" />,
-  <SiCreality size={40} color="white" />,
-  <SiKicad size={40} color="white" />,
-];
-
 // An array of project objects
 export const projects = [
   {
+    title: "OxideMC",
+    desc: "Interactive CLI wizard to set up Minecraft servers — downloads JARs, selects versions, and configures everything.",
+    tags: ["Rust", "CLI"],
+    code: "https://github.com/ezraclintoc/OxideMC",
+    demo: "https://oxidemc.clintoc.me",
+  },
+  {
     title: "Set",
-    desc: "A multiplayer online card game with real-time play — Built without backend",
+    desc: "Real-time multiplayer card game built entirely frontend — no backend, just Pusher.js for live state.",
     tags: ["Javascript", "Pusher.js", "two.js"],
     code: "https://github.com/ezraclintoc/set",
     demo: "https://ezraclintoc.github.io/set",
   },
   {
     title: "Perlerizer",
-    desc: "A program to pixelate an image. It includes a pallete, it is purpose built for perler beads or hama beads.",
+    desc: "Pixelates images to a custom color palette — built for perler and hama bead art.",
     tags: ["Python", "Algorithm"],
     code: "https://github.com/ezraclintoc/perlerizer",
   },
   {
     title: "Wallpaper",
-    desc: "A curated list of wallpapers",
+    desc: "A curated collection of desktop wallpapers.",
     tags: ["Wallpapers"],
     code: "https://github.com/ezraclintoc/wallpapers",
   },
   {
     title: "Debate Club Website",
-    desc: "A website for the CFC debate club. It has a secure login system and is hosted on vercel.",
+    desc: "Website for the CFC debate club with member login, hosted on Vercel.",
     tags: ["React", "Node", "Tailwind"],
     demo: "https://cfc.is-local.org"
   },
   {
-    title: "Impromptu Generator",
-    desc: "A website that generates prompts for impromptu speaking.",
-    tags: ["Vite", "Tailwind", "React"],
-    demo: "https://impromptu-six.vercel.app/",
-    code: "https://github.com/ezraclintoc/Impromptu"
-  }
+    title: "NCFCA Impromptu",
+    desc: "Practice suite for NCFCA speakers — smart timers, multiple event types, 10 themes, and session replay.",
+    tags: ["React", "JavaScript"],
+    code: "https://github.com/ezraclintoc/NCFCAImpromptu",
+  },
+  {
+    title: "Market Agent",
+    desc: "Autonomous trading agent for HowTheMarketWorks — AI decisions via Ollama, browser automation via Selenium, and a custom MCP server.",
+    tags: ["Python", "MCP", "AI", "Selenium"],
+    code: "https://github.com/ezraclintoc/HowTheMarketWorksMCP-AI-AGENT",
+  },
 ];

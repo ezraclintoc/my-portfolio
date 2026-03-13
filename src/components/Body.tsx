@@ -1,26 +1,30 @@
-import { CheckIcon } from "lucide-react";
 import { projects } from "../data";
 
-export function Projects({}) {
+export function Projects() {
   return (
     <main id="projects" className="max-w-6xl mx-auto px-6 pb-24">
-      <h2 className="text-3xl font-bold text-white mb-6">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-        {projects.map((p) => (
+      <h2 data-scroll-reveal className="text-3xl font-bold text-neutral-900 dark:text-neutral-50 mb-6 flex items-center gap-3">
+        <span className="block w-1 h-8 rounded-full bg-teal-700 dark:bg-teal-500 shrink-0" aria-hidden="true" />
+        Projects
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {projects.map((p, i) => (
           <article
             key={p.title}
-            className="rounded-2xl p-6 bg-black/30 border border-white/10 backdrop-blur-sm hover:scale-105 transition text-white w-auto h-64"
+            data-scroll-reveal
+            style={{ transitionDelay: `${i * 80}ms` }}
+            className="project-card relative rounded-2xl bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 hover:border-teal-300 dark:hover:border-teal-600 shadow-sm hover:shadow-[0_16px_48px_-8px_rgba(15,118,110,0.18)] dark:hover:shadow-[0_16px_48px_-8px_rgba(45,212,191,0.1)] hover:scale-105 transition text-neutral-900 dark:text-neutral-50 w-auto h-64"
           >
-            <div className="absolute inset-0 p-6 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-semibold">{p.title}</h3>
-                <p className="mt-2 text-gray-200 text-sm">{p.desc}</p>
+            <div className="project-card-content absolute inset-0 p-6 flex flex-col justify-between overflow-hidden">
+              <div className="min-w-0">
+                <h3 className="text-xl font-semibold truncate">{p.title}</h3>
+                <p className="mt-2 text-neutral-500 dark:text-neutral-400 text-sm line-clamp-3">{p.desc}</p>
               </div>
               <div className="mt-4 flex gap-2 flex-wrap">
                 {p.tags.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2 py-1 rounded-full bg-white/10 border border-white/20"
+                    className="text-xs px-2 py-1 rounded-full bg-neutral-100 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 text-neutral-600 dark:text-neutral-300"
                   >
                     {t}
                   </span>
@@ -29,18 +33,22 @@ export function Projects({}) {
               <div className="flex gap-3 mt-4">
                 {p.demo && (
                   <a
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/20 text-white hover:bg-white/30 transition"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-teal-700 dark:bg-teal-600 text-white hover:bg-teal-800 dark:hover:bg-teal-500 active:scale-95 transition text-sm"
                     href={p.demo}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    Demo
+                    Live demo
                   </a>
                 )}
                 {p.code && (
                   <a
-                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20 transition"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-neutral-100 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-200 dark:hover:bg-neutral-600 active:scale-95 transition text-sm"
                     href={p.code}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    Code
+                    View code
                   </a>
                 )}
               </div>
@@ -57,25 +65,28 @@ export function Projects({}) {
 function Languages() {
   const skills = [
     "C++",
+    "Rust",
     "Python",
     "Golang",
     "HTML",
     "CSS",
+    "GLSL",
     "JavaScript",
     "React",
     "Tailwind",
     "Node",
   ];
   return (
-    <section className="mt-12">
-      <h3 className="text-2xl font-semibold text-white mb-4">
+    <section data-scroll-reveal className="mt-12">
+      <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-4 flex items-center gap-3">
+        <span className="block w-1 h-6 rounded-full bg-teal-700 dark:bg-teal-500 shrink-0" aria-hidden="true" />
         Languages & Tools
       </h3>
       <div className="flex flex-wrap gap-3">
         {skills.map((s) => (
           <div
             key={s}
-            className="px-3 py-2 bg-black/30 border border-white/20 rounded-full text-sm"
+            className="px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full text-sm text-neutral-700 dark:text-neutral-300 hover:scale-110 hover:bg-teal-50 dark:hover:bg-teal-900/30 hover:border-teal-300 dark:hover:border-teal-700 hover:text-teal-700 dark:hover:text-teal-400 transition cursor-default select-none"
           >
             {s}
           </div>
@@ -97,20 +108,21 @@ function Socials() {
     }
   ]
   return (
-      <section className="mt-12">
-        <h3 className="text-2xl font-semibold text-white mb-4">
-          Socials
-        </h3>
-        <div className="flex flex-wrap gap-3">
+    <section data-scroll-reveal className="mt-12">
+      <h3 className="text-2xl font-semibold text-neutral-900 dark:text-neutral-50 mb-4 flex items-center gap-3">
+        <span className="block w-1 h-6 rounded-full bg-teal-700 dark:bg-teal-500 shrink-0" aria-hidden="true" />
+        Socials
+      </h3>
+      <div className="flex flex-wrap gap-3">
         {socials.map((s) => (
           <div
             key={s.tag}
-            className="px-3 py-2 bg-black/30 border border-white/20 rounded-full text-sm"
+            className="px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full text-sm text-neutral-700 dark:text-neutral-300"
           >
-            <a href={s.url}>{s.tag}</a>
+            <a href={s.url} target="_blank" rel="noreferrer">{s.tag}</a>
           </div>
         ))}
       </div>
-      </section>
-    );
+    </section>
+  );
 }

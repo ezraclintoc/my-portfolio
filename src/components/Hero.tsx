@@ -1,5 +1,4 @@
 import React from 'react';
-import { logos } from '../data'; // Import logos from data file
 
 export function Hero({ children }: { children: React.ReactNode }) {
   return (
@@ -7,35 +6,28 @@ export function Hero({ children }: { children: React.ReactNode }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
         <div>
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-            <span className="block text-white">Hi — I'm</span>
-            <span className="block hero-highlight bg-clip-text text-transparent">
+          <h1 className="mb-6">
+            <span className="block text-xs font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-[0.25em] mb-3 animate-in">Hi — I'm</span>
+            <span className="block hero-highlight animate-in animate-delay-100">
               Ezra Clintoc
             </span>
           </h1>
-          <p className="text-lg text-gray-100 mb-6 max-w-xl">
-            Frontend engineer with systems experience. Built a simple online card game and a "perelizer" — C++, Python, Go, now frontend: Tailwind, React, Node.
+          <p className="text-lg text-neutral-500 dark:text-neutral-400 mb-6 max-w-xl animate-in animate-delay-200">
+            I build whatever the problem needs. From Rust CLIs and AI agents to multiplayer games and web apps.
           </p>
-          <div className="flex gap-3">
-            <a href="#projects" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/20 text-white font-medium hover:scale-105 transition">
+          <div className="flex gap-3 animate-in animate-delay-300">
+            <a href="#projects" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-teal-700 dark:bg-teal-600 text-white font-medium hover:bg-teal-800 dark:hover:bg-teal-500 hover:scale-105 active:scale-95 transition">
               View projects
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-white/10 text-white font-medium hover:scale-105 transition">
+            <a href="#contact" className="inline-flex items-center gap-2 rounded-full px-4 py-2 bg-neutral-900 dark:bg-neutral-700 text-white font-medium hover:bg-neutral-700 dark:hover:bg-neutral-600 hover:scale-105 active:scale-95 transition">
               Contact me
             </a>
           </div>
-          <div className="mt-12 overflow-hidden relative">
-            <div className="marquee gap-10">
-              {logos.concat(logos).map((logo, idx) => (
-                <div key={idx} className="flex-shrink-0">
-                  {logo}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-        {/* Interactive Card passed as child */}
-        {children}
+        {/* Interactive Card */}
+        <div className="animate-in animate-delay-500">
+          {children}
+        </div>
       </div>
     </header>
   );
